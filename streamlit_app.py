@@ -285,9 +285,10 @@ if selected == "Demo (5 phrases max)":
 
         # This is a list comprehension to convert the decimals to percentages
         f = [[f"{x:.2%}" for x in row] for row in df["scores"]]
-
+        
         # This code is for re-integrating the labels back into the dataframe
         df["classification scores"] = f
+        
         df.drop("scores", inplace=True, axis=1)
 
         # This code is to rename the columns
@@ -321,7 +322,7 @@ if selected == "Demo (5 phrases max)":
 
         with cs:
 
-            @st.cache
+            @st.cache_data
             def convert_df(df):
                 # IMPORTANT: Cache the conversion to prevent computation on every rerun
                 return df.to_csv().encode("utf-8")
